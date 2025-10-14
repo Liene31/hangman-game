@@ -13,17 +13,20 @@
     <header>
       <h1>Hangman</h1>
       <h2>Statistics</h2>
-      <p>Won:</p>
-      <p>Lost:</p>
+      <div class="scoreboard">
+        <p>Won:</p>
+        <p>Lost:</p>
+      </div>
+      <p class="game-status" id="game-status">Guesses left: 6</p>
     </header>
     <main>
-      <p id="missed-letters">Missed letters:</p>
+      <p>Missed letters: <span id="missed-letters"></span></p>
       <p class="name-to-guess" id="name-to-guess"></p>
       <form>
         <input type="text" placeholder="Guess a letter" id="letter-input" />
         <button type="button" id="check-btn">Check</button>
       </form>
-      <button type="button">Try again</button>
+      <button type="button">Next Round</button>
     </main>
   </body>
 </html>

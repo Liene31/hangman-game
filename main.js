@@ -1,32 +1,38 @@
 import { wordsData } from "./data.js";
 
 const letterInput = document.getElementById("letter-input");
-const missedLettersPara = document.getElementById("missed-letters");
+const missedLettersSpan = document.getElementById("missed-letters");
 const nameToGuessPara = document.getElementById("name-to-guess");
+const gameStatusPara = document.getElementById("game-status");
 const checkBtn = document.getElementById("check-btn");
 
 const randomNumber = generateRandomNumber();
 const wordToGuess = wordsData[randomNumber];
-const wordToGuessLength = wordToGuess.length;
 
 const wordToGuessArray = [];
 const missedLetterArray = [];
 
+let guesses = 6;
+
 function drawDashes() {
-  for (let i = 0; i < wordToGuessLength; i++) {
+  for (let i = 0; i < wordToGuess.length; i++) {
     wordToGuessArray.push("__ ");
   }
 }
 
-function renderHtml() {
-  nameToGuessPara.textContent = "";
-  wordToGuessArray.forEach((item) => {
-    nameToGuessPara.textContent += item;
+function renderHtml(array, para) {
+  para.textContent = "";
+  array.forEach((item) => {
+    para.textContent += `${item} `;
   });
 }
 
 function generateRandomNumber() {
   return Math.floor(Math.random() * wordsData.length);
+}
+
+function clearInput() {
+  letterInput.value = "";
 }
 
 checkBtn.addEventListener("click", () => {
@@ -40,18 +46,31 @@ checkBtn.addEventListener("click", () => {
     }
   });
 
-  if (!isLetterInWord) {
+  if (!isLetterInWord && !missedLetterArray.includes(letterGuessed)) {
     missedLetterArray.push(letterGuessed);
-    missedLettersPara.textContent += letterGuessed;
+    guesses--;
+    gameStatusPara.textContent = `Guesses left: ${guesses}`;
+    renderHtml(missedLetterArray, missedLettersSpan);
+    if (guesses === 0) {
+      checkBtn.disabled = true;
+      gameStatusPara.textContent = `GAME OVER`;
+      nameToGuessPara.textContent = wordToGuess;
+    }
+  } else {
+    if (!wordToGuessArray.includes("__ ")) {
+      checkBtn.disabled = true;
+      gameStatusPara.textContent = `YOU WON`;
+    }
+    renderHtml(wordToGuessArray, nameToGuessPara);
   }
 
-  renderHtml();
+  clearInput();
 });
 
+//On game start
 drawDashes();
-renderHtml();
+renderHtml(wordToGuessArray, nameToGuessPara);
 
 // ----------------------------------------------------
 console.log(wordToGuess);
-console.log(wordToGuessLength);
-console.log(missedLetterArray);
+console.log(wordToGuess.length);
