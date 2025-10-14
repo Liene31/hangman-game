@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- JS -->
+    <script defer src="./main.js" type="module"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
     <title>Hangman Game</title>
   </head>
   <body>
@@ -14,10 +18,10 @@
     </header>
     <main>
       <p>Missed letters:</p>
-      <p>_ _ _ _</p>
+      <p class="name-to-guess" id="name-to-guess"></p>
       <form>
-        <input type="text" placeholder="Guess a letter" />
-        <button type="button">Check</button>
+        <input type="text" placeholder="Guess a letter" id="letter-input" />
+        <button type="button" id="check-btn">Check</button>
       </form>
       <button type="button">Try again</button>
     </main>
