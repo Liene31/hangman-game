@@ -14,8 +14,8 @@
       <h1>Hangman</h1>
       <h2>Statistics</h2>
       <div class="scoreboard">
-        <p>Won:</p>
-        <p>Lost:</p>
+        <p>Won: <span id="won-score"></span></p>
+        <p>Lost: <span id="lost-score"></span></p>
       </div>
       <p class="game-status" id="game-status">Guesses left: 6</p>
     </header>
@@ -26,7 +26,7 @@
         <input type="text" placeholder="Guess a letter" id="letter-input" />
         <button type="button" id="check-btn">Check</button>
       </form>
-      <button type="button">Next Round</button>
+      <button type="button" id="next-round">Next Round</button>
     </main>
   </body>
 </html>
