@@ -1,6 +1,7 @@
 import { wordsData } from "./data.js";
 
 const letterInput = document.getElementById("letter-input");
+const missedLettersPara = document.getElementById("missed-letters");
 const nameToGuessPara = document.getElementById("name-to-guess");
 const checkBtn = document.getElementById("check-btn");
 
@@ -9,7 +10,7 @@ const wordToGuess = wordsData[randomNumber];
 const wordToGuessLength = wordToGuess.length;
 
 const wordToGuessArray = [];
-// lettersMissedArray
+const missedLetterArray = [];
 
 function drawDashes() {
   for (let i = 0; i < wordToGuessLength; i++) {
@@ -30,13 +31,20 @@ function generateRandomNumber() {
 
 checkBtn.addEventListener("click", () => {
   const letterGuessed = letterInput.value.toLowerCase();
+  let isLetterInWord = false;
 
   wordToGuess.split("").forEach((letter, index) => {
     if (letterGuessed === letter) {
-      console.log(letter, index);
-      console.log((wordToGuessArray[index] = letter));
+      isLetterInWord = true;
+      wordToGuessArray[index] = letter;
     }
   });
+
+  if (!isLetterInWord) {
+    missedLetterArray.push(letterGuessed);
+    missedLettersPara.textContent += letterGuessed;
+  }
+
   renderHtml();
 });
 
@@ -46,4 +54,4 @@ renderHtml();
 // ----------------------------------------------------
 console.log(wordToGuess);
 console.log(wordToGuessLength);
-console.log(wordToGuessArray);
+console.log(missedLetterArray);
