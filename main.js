@@ -9,17 +9,17 @@ const lostScoreSpan = document.getElementById("lost-score");
 const checkBtn = document.getElementById("check-btn");
 const nextRoundBtn = document.getElementById("next-round");
 
-const randomNumber = generateRandomNumber();
-const wordToGuess = wordsData[randomNumber];
+let wordToGuess;
 
-const wordToGuessArray = [];
+let wordToGuessArray = [];
 const missedLetterArray = [];
 
 let guesses = 6;
 let wonScore = 0;
 let lostScore = 0;
 
-function drawDashes() {
+function drawDashes(wordToGuess) {
+  wordToGuessArray = []; // --> not sure I need to clear it
   for (let i = 0; i < wordToGuess.length; i++) {
     wordToGuessArray.push("__ ");
   }
@@ -81,12 +81,20 @@ nextRoundBtn.addEventListener("click", () => {
   guesses = 6;
   gameStatusPara.textContent = `Guesses left: ${guesses}`;
   missedLettersSpan.textContent = "";
+  startGame();
 });
 
-//On game start
-drawDashes();
-renderHtml(wordToGuessArray, nameToGuessPara);
+function startGame() {
+  const randomNumber = generateRandomNumber();
+  wordToGuess = wordsData[randomNumber];
+  checkBtn.disabled = false;
+  drawDashes(wordToGuess);
+  renderHtml(wordToGuessArray, nameToGuessPara);
+  console.log(wordToGuess);
+  console.log(wordToGuess.length);
+}
 
-// ----------------------------------------------------
-console.log(wordToGuess);
-console.log(wordToGuess.length);
+startGame();
+
+// On the second round the Missed letters are not updating anymore
+// Need to clear the Missed Letter array, otherwise it's already with letters
