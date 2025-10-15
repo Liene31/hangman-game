@@ -40,7 +40,14 @@ function clearInput() {
   letterInput.value = "";
 }
 
-checkBtn.addEventListener("click", () => {
+letterInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    gameLogic();
+  }
+});
+
+function gameLogic() {
   const letterGuessed = letterInput.value.toLowerCase();
   let isLetterInWord = false;
 
@@ -74,9 +81,10 @@ checkBtn.addEventListener("click", () => {
     }
     renderHtml(wordToGuessArray, nameToGuessPara);
   }
-
   clearInput();
-});
+}
+
+checkBtn.addEventListener("click", gameLogic);
 
 //Resets the game, except Won & Lost Statistics
 nextRoundBtn.addEventListener("click", () => {
@@ -101,3 +109,6 @@ function startGame() {
 }
 
 startGame();
+
+//Add message if the letter was already entered
+//One letter is entered
