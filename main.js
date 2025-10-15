@@ -111,3 +111,4 @@ function startGame() {
 startGame();
 
 //Add message if the letter was already entered
+//when empty it counts as missed
