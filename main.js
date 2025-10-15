@@ -111,4 +111,3 @@ function startGame() {
 startGame();
 
 //Add message if the letter was already entered
-//One letter is entered
