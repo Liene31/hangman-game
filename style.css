@@ -16,14 +16,7 @@ main {
   background-color: #bf6e8c;
 }
 
-.letter-box {
-  width: 20px;
-  height: 20px;
-  background-color: #956690;
-  border-radius: 0.3rem;
-}
-
-/* .letter-container {
+.letter-container {
   display: flex;
   gap: 0.7rem;
 }
@@ -33,4 +26,7 @@ main {
   height: 25px;
   background-color: #956690;
   border-radius: 0.3rem;
-} */
+  align-content: center;
+  text-align: center;
+  text-transform: uppercase;
+}

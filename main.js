@@ -19,10 +19,20 @@ let guesses = 6;
 let wonScore = 0;
 let lostScore = 0;
 
+// const letterContainer = document.getElementById("letter-container");
+
+// cell
+
 function drawDashes(wordToGuess) {
+  let divEl;
   wordToGuessArray = [];
   for (let i = 0; i < wordToGuess.length; i++) {
     wordToGuessArray.push("__ ");
+    // divEl = document.createElement("div");
+    // divEl.textContent = "_";
+    // divEl.classList.add("letter-box");
+    // letterContainer.append(divEl);
+    // wordToGuessArray.push(divEl);
   }
 }
 
@@ -118,16 +128,19 @@ function startGame() {
 
 startGame();
 
-// -----------------------------
+// else {
+//       if (
+//         wordToGuessArray.forEach((item) => {
+//           item.textContent.includes("_");
+//         })
+//       ) {
+//         checkBtn.disabled = true;
+//         nextRoundBtn.disabled = false;
+//         wonScore++;
+//         wonScoreSpan.textContent = wonScore;
+//         gameStatusPara.textContent = `YOU WON`;
+//       }
+//       renderHtml(wordToGuessArray, nameToGuessPara);
+//     }
 
-// const letterContainer = document.getElementById("letter-container");
-// const letterArray = [];
-
-// for (let i = 0; i < 10; i++) {
-//   letterArray.push("_");
-//   const divEl = document.createElement("div");
-//   divEl.classList.add("letter-box");
-//   letterContainer.append(divEl);
-// }
-
-// console.log(letterArray);
+//  wordToGuessArray[index].textContent = letter;
