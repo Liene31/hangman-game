@@ -4,6 +4,7 @@ const letterInput = document.getElementById("letter-input");
 const missedLettersSpan = document.getElementById("missed-letters");
 const nameToGuessPara = document.getElementById("name-to-guess");
 const gameStatusPara = document.getElementById("game-status");
+const errorMessage = document.getElementById("error-message");
 const wonScoreSpan = document.getElementById("won-score");
 const lostScoreSpan = document.getElementById("lost-score");
 const checkBtn = document.getElementById("check-btn");
@@ -51,36 +52,43 @@ function gameLogic() {
   const letterGuessed = letterInput.value.toLowerCase();
   let isLetterInWord = false;
 
-  wordToGuess.split("").forEach((letter, index) => {
-    if (letterGuessed === letter) {
-      isLetterInWord = true;
-      wordToGuessArray[index] = letter;
-    }
-  });
-
-  if (!isLetterInWord && !missedLetterArray.includes(letterGuessed)) {
-    missedLetterArray.push(letterGuessed);
-    guesses--;
-    gameStatusPara.textContent = `Guesses left: ${guesses}`;
-    renderHtml(missedLetterArray, missedLettersSpan);
-    if (guesses === 0) {
-      checkBtn.disabled = true;
-      nextRoundBtn.disabled = false;
-      lostScore++;
-      lostScoreSpan.textContent = lostScore;
-      gameStatusPara.textContent = `GAME OVER`;
-      nameToGuessPara.textContent = wordToGuess;
-    }
+  if (letterGuessed === "" || !isNaN(letterGuessed)) {
+    errorMessage.textContent = "*Enter a valid letter";
   } else {
-    if (!wordToGuessArray.includes("__ ")) {
-      checkBtn.disabled = true;
-      nextRoundBtn.disabled = false;
-      wonScore++;
-      wonScoreSpan.textContent = wonScore;
-      gameStatusPara.textContent = `YOU WON`;
+    errorMessage.textContent = "";
+
+    wordToGuess.split("").forEach((letter, index) => {
+      if (letterGuessed === letter) {
+        isLetterInWord = true;
+        wordToGuessArray[index] = letter;
+      }
+    });
+
+    if (!isLetterInWord && !missedLetterArray.includes(letterGuessed)) {
+      missedLetterArray.push(letterGuessed);
+      guesses--;
+      gameStatusPara.textContent = `Guesses left: ${guesses}`;
+      renderHtml(missedLetterArray, missedLettersSpan);
+      if (guesses === 0) {
+        checkBtn.disabled = true;
+        nextRoundBtn.disabled = false;
+        lostScore++;
+        lostScoreSpan.textContent = lostScore;
+        gameStatusPara.textContent = `GAME OVER`;
+        nameToGuessPara.textContent = wordToGuess;
+      }
+    } else {
+      if (!wordToGuessArray.includes("__ ")) {
+        checkBtn.disabled = true;
+        nextRoundBtn.disabled = false;
+        wonScore++;
+        wonScoreSpan.textContent = wonScore;
+        gameStatusPara.textContent = `YOU WON`;
+      }
+      renderHtml(wordToGuessArray, nameToGuessPara);
     }
-    renderHtml(wordToGuessArray, nameToGuessPara);
   }
+
   clearInput();
 }
 
@@ -109,6 +117,3 @@ function startGame() {
 }
 
 startGame();
-
-//Add message if the letter was already entered
-//when empty it counts as missed
