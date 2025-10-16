@@ -10,29 +10,36 @@
     <title>Hangman Game</title>
   </head>
   <body>
-    <header>
-      <h1>Hangman</h1>
-      <h2>Statistics</h2>
-      <div class="scoreboard">
-        <p>Won: <span id="won-score"></span></p>
-        <p>Lost: <span id="lost-score"></span></p>
-      </div>
-      <p class="game-status" id="game-status">Guesses left: 6</p>
-    </header>
-    <main>
-      <p>Missed letters: <span id="missed-letters"></span></p>
-      <p class="name-to-guess" id="name-to-guess"></p>
-      <form>
-        <input
-          type="text"
-          placeholder="Guess a letter"
-          id="letter-input"
-          maxlength="1"
-        />
-        <button type="button" id="check-btn">Check</button>
-      </form>
-      <p id="error-message"></p>
-      <button type="button" id="next-round">Next Round</button>
-    </main>
+    <div class="container">
+      <header>
+        <h1>Hangman</h1>
+        <h2>Statistics</h2>
+        <div class="scoreboard">
+          <p>Won: <span id="won-score"></span></p>
+          <p>Lost: <span id="lost-score"></span></p>
+        </div>
+        <p class="game-status" id="game-status">Guesses left: 6</p>
+      </header>
+      <main>
+        <p>Missed letters: <span id="missed-letters"></span></p>
+        <p class="name-to-guess" id="name-to-guess"></p>
+        <form>
+          <input
+            type="text"
+            placeholder="Guess a letter"
+            id="letter-input"
+            maxlength="1"
+          />
+          <button type="button" id="check-btn">Check</button>
+        </form>
+        <p id="error-message"></p>
+        <button type="button" id="next-round">Next Round</button>
+        <!-- <div class="letter-container" id="letter-container">
+          <div class="letter-box"></div>
+          <div class="letter-box"></div>
+          <div class="letter-box"></div>
+        </div> -->
+      </main>
+    </div>
   </body>
 </html>

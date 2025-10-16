@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #2f4858;
+
+  h1 {
+    text-transform: uppercase;
+  }
+}
+
+main {
+  background-color: #bf6e8c;
+}
+
+.letter-box {
+  width: 20px;
+  height: 20px;
+  background-color: #956690;
+  border-radius: 0.3rem;
+}
+
+/* .letter-container {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.letter-box {
+  width: 25px;
+  height: 25px;
+  background-color: #956690;
+  border-radius: 0.3rem;
+} */

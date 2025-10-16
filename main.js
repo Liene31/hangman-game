@@ -117,3 +117,17 @@ function startGame() {
 }
 
 startGame();
+
+// -----------------------------
+
+// const letterContainer = document.getElementById("letter-container");
+// const letterArray = [];
+
+// for (let i = 0; i < 10; i++) {
+//   letterArray.push("_");
+//   const divEl = document.createElement("div");
+//   divEl.classList.add("letter-box");
+//   letterContainer.append(divEl);
+// }
+
+// console.log(letterArray);
