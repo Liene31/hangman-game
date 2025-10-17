@@ -26,8 +26,8 @@ const letterContainer = document.getElementById("letter-container");
 function drawDashes(wordToGuess) {
   let divEl;
   wordToGuessArray = [];
+
   for (let i = 0; i < wordToGuess.length; i++) {
-    // wordToGuessArray.push("__ ");
     divEl = document.createElement("div");
     divEl.textContent = "_";
     divEl.classList.add("letter-box");
@@ -40,6 +40,13 @@ function renderHtml(array, para) {
   para.textContent = "";
   array.forEach((item) => {
     para.textContent += `${item.textContent} `;
+  });
+}
+
+function renderMissedLetters(array, para) {
+  para.textContent = "";
+  array.forEach((item) => {
+    para.textContent += `${item} `;
   });
 }
 
@@ -78,7 +85,7 @@ function gameLogic() {
       missedLetterArray.push(letterGuessed);
       guesses--;
       gameStatusPara.textContent = `Guesses left: ${guesses}`;
-      renderHtml(missedLetterArray, missedLettersSpan);
+      renderMissedLetters(missedLetterArray, missedLettersSpan);
       if (guesses === 0) {
         checkBtn.disabled = true;
         nextRoundBtn.disabled = false;
@@ -86,7 +93,11 @@ function gameLogic() {
         lostScoreSpan.textContent = lostScore;
         gameStatusPara.textContent = `GAME OVER`;
         nameToGuessPara.textContent = wordToGuess;
-        console.log(wordToGuess);
+
+        //maybe make a function, it repeats second time
+        wordToGuess.split("").forEach((letter, index) => {
+          wordToGuessArray[index].textContent = letter;
+        });
       }
     } else {
       if (
@@ -119,6 +130,7 @@ function startGame() {
   guesses = 6;
   gameStatusPara.textContent = `Guesses left: ${guesses}`;
   missedLettersSpan.textContent = "";
+  letterContainer.textContent = "";
   missedLetterArray = [];
   wordToGuess = wordsData[randomNumber];
   checkBtn.disabled = false;
@@ -133,19 +145,5 @@ function startGame() {
 
 startGame();
 
-// else {
-//       if (
-//         wordToGuessArray.forEach((item) => {
-//           item.textContent.includes("_");
-//         })
-//       ) {
-//         checkBtn.disabled = true;
-//         nextRoundBtn.disabled = false;
-//         wonScore++;
-//         wonScoreSpan.textContent = wonScore;
-//         gameStatusPara.textContent = `YOU WON`;
-//       }
-//       renderHtml(wordToGuessArray, nameToGuessPara);
-//     }
-
-//  wordToGuessArray[index].textContent = letter;
+// TODO
+// after loosing the check BTN is disabled but from input it continuous to work
