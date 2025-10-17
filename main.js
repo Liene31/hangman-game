@@ -101,7 +101,8 @@ function gameLogic() {
       }
     } else {
       if (
-        wordToGuessArray.forEach((item) => {
+        !wordToGuessArray.forEach((item) => {
+          //two forEach arrays
           item.textContent.includes("_");
         })
       ) {
