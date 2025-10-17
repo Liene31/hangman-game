@@ -39,7 +39,7 @@ function drawDashes(wordToGuess) {
 function renderHtml(array, para) {
   para.textContent = "";
   array.forEach((item) => {
-    para.textContent += `${item} `;
+    para.textContent += `${item.textContent} `;
   });
 }
 
@@ -86,6 +86,7 @@ function gameLogic() {
         lostScoreSpan.textContent = lostScore;
         gameStatusPara.textContent = `GAME OVER`;
         nameToGuessPara.textContent = wordToGuess;
+        console.log(wordToGuess);
       }
     } else {
       if (
