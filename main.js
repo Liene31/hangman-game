@@ -19,7 +19,7 @@ let guesses = 6;
 let wonScore = 0;
 let lostScore = 0;
 
-// const letterContainer = document.getElementById("letter-container");
+const letterContainer = document.getElementById("letter-container");
 
 // cell
 
@@ -27,12 +27,12 @@ function drawDashes(wordToGuess) {
   let divEl;
   wordToGuessArray = [];
   for (let i = 0; i < wordToGuess.length; i++) {
-    wordToGuessArray.push("__ ");
-    // divEl = document.createElement("div");
-    // divEl.textContent = "_";
-    // divEl.classList.add("letter-box");
-    // letterContainer.append(divEl);
-    // wordToGuessArray.push(divEl);
+    // wordToGuessArray.push("__ ");
+    divEl = document.createElement("div");
+    divEl.textContent = "_";
+    divEl.classList.add("letter-box");
+    letterContainer.append(divEl);
+    wordToGuessArray.push(divEl);
   }
 }
 
@@ -70,7 +70,7 @@ function gameLogic() {
     wordToGuess.split("").forEach((letter, index) => {
       if (letterGuessed === letter) {
         isLetterInWord = true;
-        wordToGuessArray[index] = letter;
+        wordToGuessArray[index].textContent = letter;
       }
     });
 
@@ -88,7 +88,11 @@ function gameLogic() {
         nameToGuessPara.textContent = wordToGuess;
       }
     } else {
-      if (!wordToGuessArray.includes("__ ")) {
+      if (
+        wordToGuessArray.forEach((item) => {
+          item.textContent.includes("_");
+        })
+      ) {
         checkBtn.disabled = true;
         nextRoundBtn.disabled = false;
         wonScore++;
